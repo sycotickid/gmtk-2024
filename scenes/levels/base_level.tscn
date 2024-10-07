@@ -1,0 +1,60 @@
+[gd_scene load_steps=12 format=3 uid="uid://nr1jkscptkdo"]
+
+[ext_resource type="Script" path="res://scripts/manager.gd" id="1_y56ci"]
+[ext_resource type="AudioStream" uid="uid://divofm376ycti" path="res://assets/music/Wholesome.mp3" id="2_e7jbs"]
+[ext_resource type="Texture2D" uid="uid://by0libexnu4cc" path="res://assets/textures/kids_room_sky.jpg" id="4_efxfm"]
+[ext_resource type="PackedScene" uid="uid://baw4jow0n18ld" path="res://scenes/player.tscn" id="5_5kakt"]
+[ext_resource type="PackedScene" uid="uid://da44b6ysu8j88" path="res://scenes/ui/ui.tscn" id="6_dafuk"]
+[ext_resource type="PackedScene" uid="uid://5bu1fw4uvcye" path="res://scenes/goal.tscn" id="7_tl7v4"]
+[ext_resource type="PackedScene" uid="uid://bmtci1b6x51h5" path="res://scenes/ui/pause_menu.tscn" id="7_ubuw2"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qbl7t"]
+panorama = ExtResource("4_efxfm")
+
+[sub_resource type="Sky" id="Sky_bq437"]
+sky_material = SubResource("PanoramaSkyMaterial_qbl7t")
+
+[sub_resource type="Environment" id="Environment_cfewm"]
+background_mode = 2
+sky = SubResource("Sky_bq437")
+ssr_enabled = true
+ssr_max_steps = 32
+ssao_enabled = true
+glow_bloom = 0.05
+adjustment_enabled = true
+adjustment_contrast = 1.5
+adjustment_saturation = 1.2
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_dktkl"]
+dof_blur_far_distance = 15.0
+dof_blur_far_transition = 7.0
+dof_blur_near_distance = 1.0
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_y56ci")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_e7jbs")
+volume_db = -8.0
+autoplay = true
+parameters/looping = false
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -5, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_cfewm")
+camera_attributes = SubResource("CameraAttributesPractical_dktkl")
+
+[node name="Player" parent="." instance=ExtResource("5_5kakt")]
+
+[node name="UI" parent="." instance=ExtResource("6_dafuk")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("7_ubuw2")]
+visible = false
+
+[node name="Goal" parent="." instance=ExtResource("7_tl7v4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)

@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgj5k4q3lepdc"]
+
+[ext_resource type="PackedScene" uid="uid://ml33hf6eetvx" path="res://scenes/blocks/block.tscn" id="1_x544n"]
+[ext_resource type="ArrayMesh" uid="uid://c7owa5kho5kd8" path="res://assets/models/triangle.obj" id="2_gap6y"]
+[ext_resource type="Material" uid="uid://b4h0tcgeiph2b" path="res://assets/materials/wood.tres" id="2_va7sd"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7w7lr"]
+points = PackedVector3Array(-1, 1, -0.5, -1, 1, 0.5, -1, -1, -0.5, -1, -1, 0.5, 1, -1, -0.5, 1, -1, 0.5)
+
+[node name="Block" instance=ExtResource("1_x544n")]
+
+[node name="MeshInstance3D" parent="." index="0"]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 0, 0)
+mesh = ExtResource("2_gap6y")
+surface_material_override/0 = ExtResource("2_va7sd")
+
+[node name="CollisionShape3D" parent="." index="1"]
+shape = SubResource("ConvexPolygonShape3D_7w7lr")

@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://btumaj3xy66y5"]
+
+[ext_resource type="PackedScene" uid="uid://ml33hf6eetvx" path="res://scenes/blocks/block.tscn" id="1_uoc80"]
+[ext_resource type="Material" uid="uid://b4h0tcgeiph2b" path="res://assets/materials/wood.tres" id="2_2r2v5"]
+[ext_resource type="ArrayMesh" uid="uid://bctfylc1y3r6n" path="res://assets/models/column.obj" id="2_ikpjf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_862b3"]
+size = Vector3(1, 4, 1)
+
+[node name="Block" instance=ExtResource("1_uoc80")]
+
+[node name="MeshInstance3D" parent="." index="0"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1, 0)
+mesh = ExtResource("2_ikpjf")
+surface_material_override/0 = ExtResource("2_2r2v5")
+
+[node name="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_862b3")

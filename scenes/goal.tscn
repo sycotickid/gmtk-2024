@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=3 uid="uid://5bu1fw4uvcye"]
+
+[ext_resource type="Script" path="res://scripts/goal.gd" id="1_w1s0h"]
+[ext_resource type="PackedScene" uid="uid://cw204n5gq7qee" path="res://assets/models/kenny/flag.glb" id="2_h6grf"]
+[ext_resource type="Texture2D" uid="uid://be8m42ubkydc6" path="res://assets/textures/white.png" id="3_2jo0x"]
+[ext_resource type="PackedScene" uid="uid://crolefuyl0txv" path="res://scenes/ui/goal_screen.tscn" id="4_6c426"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1xmuu"]
+radius = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_u6x0u"]
+top_radius = 1.0
+bottom_radius = 1.05
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_di084"]
+albedo_texture = ExtResource("3_2jo0x")
+uv1_triplanar = true
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3es3b"]
+height = 0.1
+radius = 1.0
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_0r7ya"]
+
+[node name="Goal" type="Node3D"]
+script = ExtResource("1_w1s0h")
+
+[node name="Flag" parent="." instance=ExtResource("2_h6grf")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="Area" type="Area3D" parent="."]
+collision_layer = 8
+
+[node name="Collision" type="CollisionShape3D" parent="Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_1xmuu")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("CylinderMesh_u6x0u")
+surface_material_override/0 = SubResource("StandardMaterial3D_di084")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("CylinderShape3D_3es3b")
+
+[node name="GoalScreen" parent="." instance=ExtResource("4_6c426")]
+
+[node name="SFXPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamPolyphonic_0r7ya")
+
+[connection signal="body_entered" from="Area" to="." method="_on_goal_body_entered"]

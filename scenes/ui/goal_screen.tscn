@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=3 uid="uid://crolefuyl0txv"]
+
+[ext_resource type="Script" path="res://scripts/goal_screen.gd" id="1_e1wd8"]
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_d6p6a"]
+
+[node name="GoalScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_e1wd8")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 256
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 256
+theme_override_constants/margin_bottom = 128
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 64
+text = "You Reached the Goal!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="NextLevel" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 32
+text = "Next Level"
+
+[node name="MainMenu" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 32
+text = "Back to Main Menu"
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPolyphonic_d6p6a")
+
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/HBoxContainer/NextLevel" to="." method="_on_next_level_hover"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/NextLevel" to="." method="_on_next_level_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/HBoxContainer/MainMenu" to="." method="_on_main_menu_hovered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]

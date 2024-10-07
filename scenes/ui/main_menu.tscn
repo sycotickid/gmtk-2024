@@ -1,0 +1,207 @@
+[gd_scene load_steps=11 format=3 uid="uid://dvrncogbvbley"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_tkcgd"]
+[ext_resource type="Texture2D" uid="uid://dm2vej1wq2tky" path="res://assets/textures/ui/logo.png" id="2_04cah"]
+[ext_resource type="Shader" path="res://assets/shaders/menu_background.gdshader" id="2_6o1fm"]
+[ext_resource type="AudioStream" uid="uid://bt4oa2ynll2t8" path="res://assets/music/Valse Gymnopedie.mp3" id="2_htq0l"]
+[ext_resource type="Texture2D" uid="uid://g5advwafkoth" path="res://assets/textures/grass.png" id="3_ror4b"]
+[ext_resource type="Texture2D" uid="uid://cs60mxptu0uwq" path="res://assets/textures/ui/gmtk2024-logo.png" id="5_8e1h7"]
+[ext_resource type="Texture2D" uid="uid://cslkh3drn0r53" path="res://assets/textures/ui/square_icon.png" id="6_pkg1t"]
+[ext_resource type="Texture2D" uid="uid://byuey2tqmde1v" path="res://assets/textures/ui/made_by.png" id="6_v34qv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_60pdg"]
+shader = ExtResource("2_6o1fm")
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_r07lc"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tkcgd")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_htq0l")
+volume_db = -8.0
+autoplay = true
+parameters/looping = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_60pdg")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ror4b")
+expand_mode = 3
+stretch_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer2/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_04cah")
+expand_mode = 5
+stretch_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 512
+theme_override_constants/margin_right = 512
+theme_override_constants/margin_bottom = 62
+
+[node name="MenuItems" type="VBoxContainer" parent="MarginContainer/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/separation = 8
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainer/MenuItems"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 64
+text = "Play
+"
+
+[node name="Playground" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainer/MenuItems"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Playground"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainer/MenuItems"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Quit
+"
+
+[node name="LevelSelect" type="GridContainer" parent="MarginContainer/VBoxContainer2/MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 32
+columns = 3
+
+[node name="Lvl_01" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainer/LevelSelect"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "1"
+icon = ExtResource("6_pkg1t")
+icon_alignment = 1
+
+[node name="Lvl_02" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainer/LevelSelect"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "2	"
+icon = ExtResource("6_pkg1t")
+icon_alignment = 1
+
+[node name="Lvl_03" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainer/LevelSelect"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "3	"
+icon = ExtResource("6_pkg1t")
+icon_alignment = 1
+
+[node name="Lvl_04" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainer/LevelSelect"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "4"
+icon = ExtResource("6_pkg1t")
+icon_alignment = 1
+
+[node name="Lvl_05" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainer/LevelSelect"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "5"
+icon = ExtResource("6_pkg1t")
+icon_alignment = 1
+
+[node name="Lvl_06" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainer/LevelSelect"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "6"
+icon = ExtResource("6_pkg1t")
+icon_alignment = 1
+
+[node name="GMTKLogo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -385.0
+offset_top = -211.0
+offset_right = 1535.0
+offset_bottom = 842.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_8e1h7")
+
+[node name="MadeBy" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = -52.0
+offset_right = 1022.0
+offset_bottom = 31.0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_v34qv")
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPolyphonic_r07lc")
+
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer2/MarginContainer/MenuItems/Play" to="." method="_on_play_hovered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/MarginContainer/MenuItems/Play" to="." method="_on_play_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer2/MarginContainer/MenuItems/Playground" to="." method="_on_playground_hovered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/MarginContainer/MenuItems/Playground" to="." method="_on_playground_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer2/MarginContainer/MenuItems/Quit" to="." method="_on_quit_hovered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/MarginContainer/MenuItems/Quit" to="." method="_on_quit_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer2/MarginContainer/LevelSelect/Lvl_01" to="." method="_on_lvl_01_hovered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/MarginContainer/LevelSelect/Lvl_01" to="." method="_on_lvl_01_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer2/MarginContainer/LevelSelect/Lvl_02" to="." method="_on_lvl_02_hovered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/MarginContainer/LevelSelect/Lvl_02" to="." method="_on_lvl_02_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer2/MarginContainer/LevelSelect/Lvl_03" to="." method="_on_lvl_03_hovered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/MarginContainer/LevelSelect/Lvl_03" to="." method="_on_lvl_03_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer2/MarginContainer/LevelSelect/Lvl_04" to="." method="_on_lvl_04_hovered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/MarginContainer/LevelSelect/Lvl_04" to="." method="_on_lvl_04_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer2/MarginContainer/LevelSelect/Lvl_05" to="." method="_on_lvl_05_hovered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/MarginContainer/LevelSelect/Lvl_05" to="." method="_on_lvl_05_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer2/MarginContainer/LevelSelect/Lvl_06" to="." method="_on_lvl_06_hovered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/MarginContainer/LevelSelect/Lvl_06" to="." method="_on_lvl_06_pressed"]

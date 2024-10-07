@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpi4xgko33nfd"]
+
+[ext_resource type="PackedScene" uid="uid://ml33hf6eetvx" path="res://scenes/blocks/block.tscn" id="1_x5ags"]
+[ext_resource type="ArrayMesh" uid="uid://b77tqjhfp6ybk" path="res://assets/models/pillar.obj" id="2_626fn"]
+[ext_resource type="Material" uid="uid://b4h0tcgeiph2b" path="res://assets/materials/wood.tres" id="2_xpkbt"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_pp78e"]
+height = 4.0
+
+[node name="Block" instance=ExtResource("1_x5ags")]
+
+[node name="MeshInstance3D" parent="." index="0"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1, 0)
+mesh = ExtResource("2_626fn")
+surface_material_override/0 = ExtResource("2_xpkbt")
+
+[node name="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_pp78e")

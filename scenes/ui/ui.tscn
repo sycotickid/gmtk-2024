@@ -1,0 +1,157 @@
+[gd_scene load_steps=10 format=3 uid="uid://da44b6ysu8j88"]
+
+[ext_resource type="Script" path="res://scripts/ui.gd" id="1_vc1ho"]
+[ext_resource type="Texture2D" uid="uid://cslkh3drn0r53" path="res://assets/textures/ui/square_icon.png" id="2_a1neu"]
+[ext_resource type="Texture2D" uid="uid://dd7hgipcefkti" path="res://assets/textures/ui/reactangle_icon.png" id="3_s3olj"]
+[ext_resource type="Texture2D" uid="uid://l4dcdcljw7t5" path="res://assets/textures/ui/triangle_icon.png" id="4_4eip3"]
+[ext_resource type="Texture2D" uid="uid://bio70jq8plo42" path="res://assets/textures/ui/column_icon.png" id="5_msdg2"]
+[ext_resource type="Texture2D" uid="uid://boirrgeb8f6ly" path="res://assets/textures/ui/pillar_icon.png" id="6_l1ebh"]
+[ext_resource type="Texture2D" uid="uid://ccjqbgsiomaxx" path="res://assets/textures/ui/arch_icon.png" id="7_8140i"]
+[ext_resource type="Texture2D" uid="uid://dw2kkj68q33w" path="res://assets/textures/ui/half_circle_icon.png" id="8_u3lik"]
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_eslsi"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("1_vc1ho")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -261.0
+offset_top = -488.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="Square" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_constants/icon_max_width = 100
+text = "Square"
+icon = ExtResource("2_a1neu")
+icon_alignment = 1
+
+[node name="Rectangle" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 5
+focus_mode = 0
+theme_override_constants/icon_max_width = 100
+keep_pressed_outside = true
+text = "Rectangle"
+icon = ExtResource("3_s3olj")
+icon_alignment = 1
+
+[node name="Triangle" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 5
+focus_mode = 0
+theme_override_constants/icon_max_width = 100
+text = "Triangle"
+icon = ExtResource("4_4eip3")
+icon_alignment = 1
+
+[node name="Column" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 5
+focus_mode = 0
+theme_override_constants/icon_max_width = 100
+text = "Column"
+icon = ExtResource("5_msdg2")
+icon_alignment = 1
+
+[node name="Pillar" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 5
+focus_mode = 0
+theme_override_constants/icon_max_width = 100
+text = "Pillar"
+icon = ExtResource("6_l1ebh")
+icon_alignment = 1
+
+[node name="Arch" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 5
+focus_mode = 0
+theme_override_constants/icon_max_width = 100
+text = "Arch"
+icon = ExtResource("7_8140i")
+icon_alignment = 1
+
+[node name="Half Circle" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 5
+focus_mode = 0
+theme_override_constants/icon_max_width = 100
+text = "Half-Circle
+"
+icon = ExtResource("8_u3lik")
+icon_alignment = 1
+
+[node name="Long Triangle" type="Button" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 5
+focus_mode = 0
+theme_override_constants/icon_max_width = 100
+text = "Long Triangle"
+icon = ExtResource("4_4eip3")
+icon_alignment = 1
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPolyphonic_eslsi")
+
+[node name="ControlHint" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -573.0
+offset_top = -51.0
+offset_right = -303.0
+offset_bottom = -17.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "Press 'F' to grab a block"
+
+[connection signal="pressed" from="MarginContainer/GridContainer/Square" to="." method="_on_square_pressed"]
+[connection signal="pressed" from="MarginContainer/GridContainer/Rectangle" to="." method="_on_rectangle_pressed"]
+[connection signal="pressed" from="MarginContainer/GridContainer/Triangle" to="." method="_on_triangle_pressed"]
+[connection signal="pressed" from="MarginContainer/GridContainer/Column" to="." method="_on_column_pressed"]
+[connection signal="pressed" from="MarginContainer/GridContainer/Pillar" to="." method="_on_pillar_pressed"]
+[connection signal="pressed" from="MarginContainer/GridContainer/Arch" to="." method="_on_arch_pressed"]
+[connection signal="pressed" from="MarginContainer/GridContainer/Half Circle" to="." method="_on_half_circle_pressed"]
+[connection signal="pressed" from="MarginContainer/GridContainer/Long Triangle" to="." method="_on_long_triangle_pressed"]

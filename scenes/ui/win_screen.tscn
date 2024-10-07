@@ -1,0 +1,116 @@
+[gd_scene load_steps=8 format=3 uid="uid://dsaeyhvk7pf2l"]
+
+[ext_resource type="Script" path="res://scripts/win_screen.gd" id="1_1hexj"]
+[ext_resource type="AudioStream" uid="uid://bt4oa2ynll2t8" path="res://assets/music/Valse Gymnopedie.mp3" id="2_odqs7"]
+[ext_resource type="Shader" path="res://assets/shaders/menu_background.gdshader" id="3_id0vb"]
+[ext_resource type="Texture2D" uid="uid://g5advwafkoth" path="res://assets/textures/grass.png" id="4_evy22"]
+[ext_resource type="Texture2D" uid="uid://cs60mxptu0uwq" path="res://assets/textures/ui/gmtk2024-logo.png" id="6_ryr4t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_60pdg"]
+shader = ExtResource("3_id0vb")
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_r07lc"]
+
+[node name="WinScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1hexj")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_odqs7")
+volume_db = -8.0
+autoplay = true
+parameters/looping = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_60pdg")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_evy22")
+expand_mode = 3
+stretch_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 64
+text = "THANK YOU FOR PLAYING!"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 512
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 512
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/separation = 8
+
+[node name="MainMenu" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 64
+text = "Main Menu"
+
+[node name="Playground" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Playground"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Quit
+"
+
+[node name="GMTKLogo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -385.0
+offset_top = -211.0
+offset_right = 1535.0
+offset_bottom = 842.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_ryr4t")
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPolyphonic_r07lc")
+
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_hovered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/Playground" to="." method="_on_playground_hovered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/Playground" to="." method="_on_playground_pressed"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_hovered"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

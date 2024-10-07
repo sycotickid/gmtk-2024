@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ufhv1p0yqgvg"
+path="res://.godot/imported/rotate_widget.obj-51d879e5f69e77ed9d9428a0d06507fb.mesh"
+
+[deps]
+
+files=["res://.godot/imported/rotate_widget.obj-51d879e5f69e77ed9d9428a0d06507fb.mesh"]
+
+source_file="res://assets/models/rotate_widget.obj"
+dest_files=["res://.godot/imported/rotate_widget.obj-51d879e5f69e77ed9d9428a0d06507fb.mesh", "res://.godot/imported/rotate_widget.obj-51d879e5f69e77ed9d9428a0d06507fb.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

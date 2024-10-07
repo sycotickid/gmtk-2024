@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://cd00ujlg708kp"]
+
+[ext_resource type="PackedScene" uid="uid://ml33hf6eetvx" path="res://scenes/blocks/block.tscn" id="1_mcike"]
+[ext_resource type="Material" uid="uid://b4h0tcgeiph2b" path="res://assets/materials/wood.tres" id="2_jv8ds"]
+[ext_resource type="ArrayMesh" uid="uid://75ied68cwrfg" path="res://assets/models/rectangle.obj" id="2_yue8j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nygge"]
+size = Vector3(1, 2, 4)
+
+[node name="Block" instance=ExtResource("1_mcike")]
+
+[node name="MeshInstance3D" parent="." index="0"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = ExtResource("2_yue8j")
+surface_material_override/0 = ExtResource("2_jv8ds")
+
+[node name="CollisionShape3D" parent="." index="1"]
+shape = SubResource("BoxShape3D_nygge")

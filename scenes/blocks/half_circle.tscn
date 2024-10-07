@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bs3glnaopoyuh"]
+
+[ext_resource type="PackedScene" uid="uid://ml33hf6eetvx" path="res://scenes/blocks/block.tscn" id="1_bpex4"]
+[ext_resource type="ArrayMesh" uid="uid://deh21vpaakj8y" path="res://assets/models/half_circle.obj" id="2_jjtcc"]
+[ext_resource type="Material" uid="uid://b4h0tcgeiph2b" path="res://assets/materials/wood.tres" id="3_b3ytq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tdc4d"]
+
+[node name="Block" instance=ExtResource("1_bpex4")]
+
+[node name="MeshInstance3D" parent="." index="0"]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, 0, -0.5, 0)
+mesh = ExtResource("2_jjtcc")
+surface_material_override/0 = ExtResource("3_b3ytq")
+
+[node name="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_tdc4d")
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="." index="2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.5, 0)
+polygon = PackedVector2Array(1, -0.5, 1, 0, 0.5, 0.45, 0, 0.5, -0.5, 0.45, -1, 0, -1, -0.5)
