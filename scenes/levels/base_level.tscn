@@ -16,6 +16,7 @@ sky_material = SubResource("PanoramaSkyMaterial_qbl7t")
 
 [sub_resource type="Environment" id="Environment_cfewm"]
 background_mode = 2
+background_energy_multiplier = 0.5
 sky = SubResource("Sky_bq437")
 ssr_enabled = true
 ssr_max_steps = 32

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://calyihsqi4vv2"]
+[gd_scene load_steps=21 format=3 uid="uid://calyihsqi4vv2"]
 
 [ext_resource type="PackedScene" uid="uid://nr1jkscptkdo" path="res://scenes/levels/base_level.tscn" id="1_q3h7r"]
 [ext_resource type="Material" uid="uid://0vqh5elp47wn" path="res://assets/materials/grass.tres" id="2_0ys5a"]
@@ -41,11 +41,17 @@ size = Vector2(22.5, 15)
 [sub_resource type="BoxShape3D" id="BoxShape3D_y5nyb"]
 size = Vector3(1, 22.5, 15)
 
+[sub_resource type="BoxMesh" id="BoxMesh_cjvdg"]
+size = Vector3(15, 0.5, 7.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5d1mw"]
+size = Vector3(15, 0.5, 7.5)
+
 [sub_resource type="BoxMesh" id="BoxMesh_v6kc4"]
-size = Vector3(15, 4.5, 7.5)
+size = Vector3(15, 4, 7.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_08pls"]
-size = Vector3(15, 4.5, 7.5)
+size = Vector3(15, 4, 7.5)
 
 [node name="Main" instance=ExtResource("1_q3h7r")]
 
@@ -67,7 +73,7 @@ shape = SubResource("BoxShape3D_2kh0o")
 
 [node name="Wall01" type="StaticBody3D" parent="Arena" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 5, 3.75)
-collision_layer = 16
+collision_layer = 2
 collision_mask = 15
 input_ray_pickable = false
 
@@ -82,7 +88,7 @@ shape = SubResource("BoxShape3D_80d3j")
 
 [node name="Wall02" type="StaticBody3D" parent="Arena" index="2"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 5, 15)
-collision_layer = 16
+collision_layer = 2
 collision_mask = 15
 input_ray_pickable = false
 
@@ -97,7 +103,7 @@ shape = SubResource("BoxShape3D_0sj0j")
 
 [node name="Wall03" type="StaticBody3D" parent="Arena" index="3"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -7.5, 5, 3.75)
-collision_layer = 16
+collision_layer = 2
 collision_mask = 15
 input_ray_pickable = false
 
@@ -112,7 +118,7 @@ shape = SubResource("BoxShape3D_o8u7y")
 
 [node name="Wall04" type="StaticBody3D" parent="Arena" index="4"]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0, 5, -7.5)
-collision_layer = 16
+collision_layer = 2
 collision_mask = 15
 input_ray_pickable = false
 
@@ -127,7 +133,7 @@ shape = SubResource("BoxShape3D_vt6dm")
 
 [node name="Ceiling" type="StaticBody3D" parent="Arena" index="5"]
 transform = Transform3D(1.31134e-07, 0, 1, 1, -4.37114e-08, -1.31134e-07, 4.37114e-08, 1, -5.73206e-15, 0, 10, 3.75)
-collision_layer = 16
+collision_layer = 2
 collision_mask = 15
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Arena/Ceiling" index="0"]
@@ -139,8 +145,20 @@ surface_material_override/0 = ExtResource("2_pk3cv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
 shape = SubResource("BoxShape3D_y5nyb")
 
-[node name="Platform" type="StaticBody3D" parent="Arena" index="6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 11.25)
+[node name="Floor2" type="StaticBody3D" parent="Arena" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.0149, 11.2421)
+collision_layer = 2
+collision_mask = 15
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Arena/Floor2" index="0"]
+material_override = ExtResource("2_0ys5a")
+mesh = SubResource("BoxMesh_cjvdg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Arena/Floor2" index="1"]
+shape = SubResource("BoxShape3D_5d1mw")
+
+[node name="Platform" type="StaticBody3D" parent="Arena" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.76685, 11.25)
 collision_layer = 2
 collision_mask = 31
 

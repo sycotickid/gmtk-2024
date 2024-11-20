@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bbdru15y2dum6"]
+[gd_scene load_steps=21 format=3 uid="uid://bbdru15y2dum6"]
 
 [ext_resource type="PackedScene" uid="uid://nr1jkscptkdo" path="res://scenes/levels/base_level.tscn" id="1_q6805"]
 [ext_resource type="Material" uid="uid://0vqh5elp47wn" path="res://assets/materials/grass.tres" id="2_o1rfu"]
@@ -11,6 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://ljllnviiaxqx" path="res://scenes/blocks/arch.tscn" id="9_kndjp"]
 [ext_resource type="PackedScene" uid="uid://bgj5k4q3lepdc" path="res://scenes/blocks/triangle.tscn" id="10_10ouc"]
 [ext_resource type="PackedScene" uid="uid://bs3glnaopoyuh" path="res://scenes/blocks/half_circle.tscn" id="11_tunbw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wk7mt"]
+size = Vector3(1, 50, 60)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nbwuq"]
+size = Vector3(1, 60, 60)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_3k4le"]
 top_radius = 25.0
@@ -44,6 +50,57 @@ height = 0.1
 radius = 1.0
 
 [node name="Main" instance=ExtResource("1_q6805")]
+
+[node name="MusicPlayer" parent="." index="0"]
+autoplay = false
+
+[node name="VoidWall" type="StaticBody3D" parent="MusicPlayer" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.005, 14.0722, 1.79146)
+collision_layer = 16
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MusicPlayer/VoidWall" index="0"]
+shape = SubResource("BoxShape3D_wk7mt")
+
+[node name="VoidWall2" type="StaticBody3D" parent="MusicPlayer" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.2733, 14.0722, 1.79146)
+collision_layer = 16
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MusicPlayer/VoidWall2" index="0"]
+shape = SubResource("BoxShape3D_wk7mt")
+
+[node name="VoidWall3" type="StaticBody3D" parent="MusicPlayer" index="2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.670641, 14.0722, -27.923)
+collision_layer = 16
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MusicPlayer/VoidWall3" index="0"]
+shape = SubResource("BoxShape3D_wk7mt")
+
+[node name="VoidWall4" type="StaticBody3D" parent="MusicPlayer" index="3"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.670641, 14.0722, 31.942)
+collision_layer = 16
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MusicPlayer/VoidWall4" index="0"]
+shape = SubResource("BoxShape3D_wk7mt")
+
+[node name="VoidWall5" type="StaticBody3D" parent="MusicPlayer" index="4"]
+transform = Transform3D(-4.37114e-08, 0, 1, -1, -4.37114e-08, -4.37114e-08, 4.37114e-08, -1, 1.91069e-15, -0.670641, 38.4008, 2.15634)
+collision_layer = 16
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MusicPlayer/VoidWall5" index="0"]
+shape = SubResource("BoxShape3D_nbwuq")
+
+[node name="VoidWall6" type="StaticBody3D" parent="MusicPlayer" index="5"]
+transform = Transform3D(-4.37114e-08, 0, 1, -1, -4.37114e-08, -4.37114e-08, 4.37114e-08, -1, 1.91069e-15, -0.670641, -10.841, 2.15634)
+collision_layer = 16
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MusicPlayer/VoidWall6" index="0"]
+shape = SubResource("BoxShape3D_nbwuq")
 
 [node name="Arena" type="StaticBody3D" parent="." index="1"]
 collision_layer = 2
@@ -80,116 +137,145 @@ next_level = ExtResource("3_ea5il")
 
 [node name="Block" parent="." index="7" instance=ExtResource("5_p0wu6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.2, -14.9661)
+collision_mask = 22
 preplaced = true
 
 [node name="Block2" parent="." index="8" instance=ExtResource("5_p0wu6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.2, -15)
+collision_mask = 22
 preplaced = true
 
 [node name="Block3" parent="." index="9" instance=ExtResource("5_p0wu6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.2, -23.0436)
+collision_mask = 22
 preplaced = true
 
 [node name="Block4" parent="." index="10" instance=ExtResource("5_p0wu6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.14942, -22.8922)
+collision_mask = 22
 preplaced = true
 
 [node name="Block5" parent="." index="11" instance=ExtResource("6_iq7ai")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.99572, 1.14021, -20.5115)
+collision_mask = 22
 preplaced = true
 
 [node name="Block6" parent="." index="12" instance=ExtResource("6_iq7ai")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3.93998, 2.14535, -16.475)
+collision_mask = 22
 preplaced = true
 
 [node name="Block7" parent="." index="13" instance=ExtResource("7_unmqw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.92363, 1.13686, -18.0164)
+collision_mask = 22
 preplaced = true
 
 [node name="Block8" parent="." index="14" instance=ExtResource("8_usekc")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.49726, 1.15787, -22.8365)
+collision_mask = 22
 preplaced = true
 
 [node name="Block9" parent="." index="15" instance=ExtResource("8_usekc")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.477607, 1.15787, -22.8365)
+collision_mask = 22
 preplaced = true
 
 [node name="Block10" parent="." index="16" instance=ExtResource("8_usekc")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.52746, 1.15787, -22.8365)
+collision_mask = 22
 preplaced = true
 
 [node name="Block11" parent="." index="17" instance=ExtResource("7_unmqw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.00527, 1.17807, -22.8486)
+collision_mask = 22
 preplaced = true
 
 [node name="Block12" parent="." index="18" instance=ExtResource("9_kndjp")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.4897, 3.16911, -22.8686)
+collision_mask = 22
 preplaced = true
 
 [node name="Block13" parent="." index="19" instance=ExtResource("9_kndjp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.97523, 3.16911, -20.5212)
+collision_mask = 22
 preplaced = true
 
 [node name="Block14" parent="." index="20" instance=ExtResource("5_p0wu6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9848, 1.12565, -19.051)
+collision_mask = 22
 preplaced = true
 
 [node name="Block15" parent="." index="21" instance=ExtResource("8_usekc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.88701, 1.15353, -16.5082)
+collision_mask = 22
 preplaced = true
 
 [node name="Block16" parent="." index="22" instance=ExtResource("8_usekc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.88701, 3.15704, -16.5082)
+collision_mask = 22
 preplaced = true
 
 [node name="Block17" parent="." index="23" instance=ExtResource("8_usekc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.88701, 1.15353, -21.3757)
+collision_mask = 22
 preplaced = true
 
 [node name="Block18" parent="." index="24" instance=ExtResource("8_usekc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.88701, 3.15704, -21.3757)
+collision_mask = 22
 preplaced = true
 
 [node name="Block20" parent="." index="25" instance=ExtResource("9_kndjp")]
 transform = Transform3D(0.0166671, 0, -0.999861, 0, 1, 0, 0.999861, 0, 0.0166671, -0.0077433, 3.14277, -15.1636)
+collision_mask = 22
 preplaced = true
 
 [node name="Block19" parent="." index="26" instance=ExtResource("8_usekc")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.4492, 1.13003, -15.111)
+collision_mask = 22
 preplaced = true
 
 [node name="Block21" parent="." index="27" instance=ExtResource("8_usekc")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.38956, 1.13003, -15.111)
+collision_mask = 22
 preplaced = true
 
 [node name="Block22" parent="." index="28" instance=ExtResource("10_10ouc")]
 transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, -2.01639, 3.55806, -15.1847)
+collision_mask = 22
 preplaced = true
 
 [node name="Block23" parent="." index="29" instance=ExtResource("10_10ouc")]
 transform = Transform3D(-0.707107, -0.707107, 0, 0.707107, -0.707107, 0, 0, 0, 1, 2.03591, 3.64281, -15.1932)
+collision_mask = 22
 preplaced = true
 
 [node name="Block24" parent="." index="30" instance=ExtResource("10_10ouc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4963, 3.17001, -22.8513)
+collision_mask = 22
 preplaced = true
 
 [node name="Block25" parent="." index="31" instance=ExtResource("10_10ouc")]
 transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, -1.4963, 3.17001, -22.8513)
+collision_mask = 22
 preplaced = true
 
 [node name="Block26" parent="." index="32" instance=ExtResource("11_tunbw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0288, 5.2133, -15.2665)
+collision_mask = 22
 preplaced = true
 
 [node name="Block27" parent="." index="33" instance=ExtResource("11_tunbw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.91696, 5.2133, -15.2665)
+collision_mask = 22
 preplaced = true
 
 [node name="Block28" parent="." index="34" instance=ExtResource("11_tunbw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0288, 5.2133, -21.9204)
+collision_mask = 22
 preplaced = true
 
 [node name="Block29" parent="." index="35" instance=ExtResource("11_tunbw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.91696, 5.2133, -21.9204)
+collision_mask = 22
 preplaced = true

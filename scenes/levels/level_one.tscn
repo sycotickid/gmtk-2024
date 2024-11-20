@@ -43,7 +43,7 @@ shape = SubResource("BoxShape3D_2kh0o")
 
 [node name="Wall01" type="StaticBody3D" parent="Arena" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 5, 0)
-collision_layer = 16
+collision_layer = 2
 collision_mask = 15
 input_ray_pickable = false
 
@@ -58,7 +58,7 @@ shape = SubResource("BoxShape3D_80d3j")
 
 [node name="Wall02" type="StaticBody3D" parent="Arena" index="2"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 5, 7.5)
-collision_layer = 16
+collision_layer = 2
 collision_mask = 15
 input_ray_pickable = false
 
@@ -73,7 +73,7 @@ shape = SubResource("BoxShape3D_80d3j")
 
 [node name="Wall03" type="StaticBody3D" parent="Arena" index="3"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -7.5, 5, 0)
-collision_layer = 16
+collision_layer = 2
 collision_mask = 15
 input_ray_pickable = false
 
@@ -88,7 +88,7 @@ shape = SubResource("BoxShape3D_80d3j")
 
 [node name="Wall04" type="StaticBody3D" parent="Arena" index="4"]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0, 5, -7.5)
-collision_layer = 16
+collision_layer = 2
 collision_mask = 15
 input_ray_pickable = false
 
@@ -103,7 +103,7 @@ shape = SubResource("BoxShape3D_80d3j")
 
 [node name="Ceiling" type="StaticBody3D" parent="Arena" index="5"]
 transform = Transform3D(1.31134e-07, 0, 1, 1, -4.37114e-08, -1.31134e-07, 4.37114e-08, 1, -5.73206e-15, 0, 10, 0)
-collision_layer = 16
+collision_layer = 2
 collision_mask = 15
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Arena/Ceiling" index="0"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dxlxwfomc6spq"]
+[gd_scene load_steps=27 format=3 uid="uid://dxlxwfomc6spq"]
 
 [ext_resource type="PackedScene" uid="uid://nr1jkscptkdo" path="res://scenes/levels/base_level.tscn" id="1_ry1lp"]
 [ext_resource type="Material" uid="uid://0vqh5elp47wn" path="res://assets/materials/grass.tres" id="2_4la0l"]
@@ -64,6 +64,12 @@ size = Vector3(3.5, 3.5, 3.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8lkct"]
 size = Vector3(3.5, 3.5, 3.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_is0xw"]
+size = Vector3(1, 50, 60)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8y1fu"]
+size = Vector3(1, 60, 60)
 
 [node name="Main" instance=ExtResource("1_ry1lp")]
 
@@ -196,3 +202,51 @@ shape = SubResource("BoxShape3D_8lkct")
 [node name="Goal" parent="." index="6"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -3.5369, 0.339386, 14.9692)
 next_level = ExtResource("4_4u00i")
+
+[node name="VoidWall" type="StaticBody3D" parent="Goal" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.7417, 16.9745, 9.79398)
+collision_layer = 16
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Goal/VoidWall" index="0"]
+shape = SubResource("BoxShape3D_is0xw")
+
+[node name="VoidWall2" type="StaticBody3D" parent="Goal" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5365, 16.9745, 9.79398)
+collision_layer = 16
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Goal/VoidWall2" index="0"]
+shape = SubResource("BoxShape3D_is0xw")
+
+[node name="VoidWall3" type="StaticBody3D" parent="Goal" index="7"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.40736, 16.9745, -19.9205)
+collision_layer = 16
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Goal/VoidWall3" index="0"]
+shape = SubResource("BoxShape3D_is0xw")
+
+[node name="VoidWall4" type="StaticBody3D" parent="Goal" index="8"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.40736, 16.9745, 39.9445)
+collision_layer = 16
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Goal/VoidWall4" index="0"]
+shape = SubResource("BoxShape3D_is0xw")
+
+[node name="VoidWall5" type="StaticBody3D" parent="Goal" index="9"]
+transform = Transform3D(-4.37114e-08, 0, 1, -1, -4.37114e-08, -4.37114e-08, 4.37114e-08, -1, 0, -7.40736, 41.3031, 10.1589)
+collision_layer = 16
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Goal/VoidWall5" index="0"]
+shape = SubResource("BoxShape3D_8y1fu")
+
+[node name="VoidWall6" type="StaticBody3D" parent="Goal" index="10"]
+transform = Transform3D(-4.37114e-08, 0, 1, -1, -4.37114e-08, -4.37114e-08, 4.37114e-08, -1, 0, -7.40736, -7.93879, 10.1589)
+collision_layer = 16
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Goal/VoidWall6" index="0"]
+shape = SubResource("BoxShape3D_8y1fu")
