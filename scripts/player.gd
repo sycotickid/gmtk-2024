@@ -12,19 +12,16 @@ extends CharacterBody3D
 @onready var climb_check = $Mesh/ClimbCheck
 @onready var climb_finished_check = $Mesh/ClimbFinishCheck
 
-@onready var stick_point_holder = $Mesh/StickPointHolder
-@onready var stick_point = $Mesh/StickPointHolder/StickPoint
-
 @onready var block_check = $Anchor/Camera/BlockCheck
 
 @onready var crosshair = $Anchor/Camera/BlockCheck/Crosshair
-
 
 #ORBIT
 const ORBIT_SPEED := 0.5
 var _orbit_speed := Vector2()
 #MOVEMENT
 const SPEED = 5.0
+const ROTATION_SPEED = 20.0
 const CLIMB_SPEED = 2.5
 const JUMP_VELOCITY = 4.5
 var direction: Vector3
@@ -41,14 +38,13 @@ var last_floor := true
 
 func _ready():
 	anchor.basis = basis
-	boy.visible = false
 	girl.visible = true
 	pass
 
 func _process(delta):
 	if direction != Vector3.ZERO:
 		if !is_climbing:
-			mesh.rotation.y = lerp_angle(mesh.rotation.y, atan2(direction.x, direction.z), SPEED * delta)
+			mesh.rotation.y = lerp_angle(mesh.rotation.y, atan2(direction.x, direction.z), ROTATION_SPEED * delta)
 		else:
 			stamina = clampf(stamina - 0.05, 0, 10.0)
 			mesh.rotation.y = -atan2(climb_check.get_collision_normal().z, climb_check.get_collision_normal().x) - Global.Deg90
@@ -82,13 +78,10 @@ func _physics_process(delta):
 	if can_climb:
 		climbing()
 	if is_climbing:
-		stick_point_holder.global_transform.origin = climb_check.get_collision_point()
-		global_transform.origin.x = stick_point.global_transform.origin.x
-		global_transform.origin.z = stick_point.global_transform.origin.z
-		
 		var wall_normal_rotation = -(atan2(climb_check.get_collision_normal().z, climb_check.get_collision_normal().x) - Global.Deg90)
 		if Global.current_gamemode == Global.GameMode.SCALE:
 			direction = Vector3(input_dir.x, input_dir.y, 0).rotated(Vector3.UP, wall_normal_rotation).normalized()
+		
 		if direction:
 			velocity.x = direction.x * SPEED
 			velocity.y = direction.y * SPEED
@@ -139,15 +132,6 @@ func _physics_process(delta):
 	_scroll_speed = 0.0
 
 func _input(event):
-	#if Input.is_action_just_pressed("toggle_gender"):
-		#if girl.visible:
-			#girl.visible = false
-			#boy.visible = true
-			#animation_tree.anim_player = ^"Mesh/character-male-d2/AnimationPlayer"
-		#else:
-			#boy.visible = false
-			#girl.visible = true
-			#animation_tree.anim_player = ^"Mesh/character-female-b2/AnimationPlayer"
 	if Global.current_gamemode != Global.GameMode.SCALE:
 		return
 	if event is InputEventMouseMotion:
@@ -181,6 +165,7 @@ func climbing():
 func _check_for_block():
 	var block = block_check.get_collider()
 	if is_instance_valid(block):
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		block.call("pick_up_block")
 		animation_tree.set("parameters/conditions/dropped_block", false)
 		animation_tree.set("parameters/conditions/is_holding_block", true)
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

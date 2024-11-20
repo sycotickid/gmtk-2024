@@ -67,7 +67,7 @@ func screen_to_world_point(camera: Camera3D, excludeRid: RID = RID()):
 	var mouse_position = get_viewport().get_mouse_position()
 	var origin = camera.project_ray_origin(mouse_position)
 	var end = origin + camera.project_ray_normal(mouse_position) * 100
-	var query = PhysicsRayQueryParameters3D.create(origin, end, 6, [excludeRid])
+	var query = PhysicsRayQueryParameters3D.create(origin, end, 22, [excludeRid])
 	var rayResult = get_world_3d().direct_space_state.intersect_ray(query)
 	if !rayResult.is_empty():
 		return rayResult

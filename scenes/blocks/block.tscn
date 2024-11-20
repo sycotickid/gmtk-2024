@@ -18,7 +18,7 @@ albedo_texture = ExtResource("4_vykvq")
 
 [node name="Block" type="RigidBody3D"]
 collision_layer = 4
-collision_mask = 22
+collision_mask = 6
 mass = 100.0
 gravity_scale = 2.0
 script = ExtResource("1_m2yt4")

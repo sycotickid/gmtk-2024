@@ -80,9 +80,13 @@ func _input(event):
 
 func _on_input_event(camera, event, position, normal, shape_idx):
 	if Input.is_action_just_pressed("select") && !Global.is_carrying_block:
-		playback.play_stream(Global.wood_hover_sounds.pick_random())
-		Global.is_carrying_block = true
-		is_dragged = true
-		collision_shape_3d.disabled = true
-		Global.current_gamemode = Global.GameMode.BUILD
-		set_freeze_enabled(true)
+		pick_up_block()
+
+
+func pick_up_block():
+	playback.play_stream(Global.wood_hover_sounds.pick_random())
+	Global.is_carrying_block = true
+	is_dragged = true
+	collision_shape_3d.disabled = true
+	Global.current_gamemode = Global.GameMode.BUILD
+	set_freeze_enabled(true)

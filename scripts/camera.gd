@@ -3,7 +3,6 @@ extends Node3D
 @onready var camera := $Camera
 @onready var block_check = $Camera/BlockCheck
 
-
 var _mouse_position := Vector3()
 #ORBIT
 const ORBIT_SPEED := 0.5
