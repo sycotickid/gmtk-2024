@@ -55,7 +55,7 @@ radius = 1.0
 autoplay = false
 
 [node name="VoidWall" type="StaticBody3D" parent="MusicPlayer" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.005, 14.0722, 1.79146)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.3816, 14.0722, 1.79146)
 collision_layer = 16
 collision_mask = 15
 
@@ -63,7 +63,7 @@ collision_mask = 15
 shape = SubResource("BoxShape3D_wk7mt")
 
 [node name="VoidWall2" type="StaticBody3D" parent="MusicPlayer" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.2733, 14.0722, 1.79146)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.4754, 14.0722, 1.79146)
 collision_layer = 16
 collision_mask = 15
 
@@ -71,7 +71,7 @@ collision_mask = 15
 shape = SubResource("BoxShape3D_wk7mt")
 
 [node name="VoidWall3" type="StaticBody3D" parent="MusicPlayer" index="2"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.670641, 14.0722, -27.923)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.670641, 14.0722, -23.7406)
 collision_layer = 16
 collision_mask = 15
 
@@ -79,7 +79,7 @@ collision_mask = 15
 shape = SubResource("BoxShape3D_wk7mt")
 
 [node name="VoidWall4" type="StaticBody3D" parent="MusicPlayer" index="3"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.670641, 14.0722, 31.942)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.670641, 14.0722, 29.3663)
 collision_layer = 16
 collision_mask = 15
 
@@ -87,7 +87,7 @@ collision_mask = 15
 shape = SubResource("BoxShape3D_wk7mt")
 
 [node name="VoidWall5" type="StaticBody3D" parent="MusicPlayer" index="4"]
-transform = Transform3D(-4.37114e-08, 0, 1, -1, -4.37114e-08, -4.37114e-08, 4.37114e-08, -1, 1.91069e-15, -0.670641, 38.4008, 2.15634)
+transform = Transform3D(-4.37114e-08, 0, 1, -1, -4.37114e-08, -4.37114e-08, 4.37114e-08, -1, 1.91069e-15, -0.670641, 36.6035, 2.15634)
 collision_layer = 16
 collision_mask = 15
 
@@ -95,9 +95,9 @@ collision_mask = 15
 shape = SubResource("BoxShape3D_nbwuq")
 
 [node name="VoidWall6" type="StaticBody3D" parent="MusicPlayer" index="5"]
-transform = Transform3D(-4.37114e-08, 0, 1, -1, -4.37114e-08, -4.37114e-08, 4.37114e-08, -1, 1.91069e-15, -0.670641, -10.841, 2.15634)
+transform = Transform3D(-4.37114e-08, 0, 1, -1, -4.37114e-08, -4.37114e-08, 4.37114e-08, -1, 1.91069e-15, -0.670641, -7.55813, 2.15634)
 collision_layer = 16
-collision_mask = 15
+collision_mask = 14
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MusicPlayer/VoidWall6" index="0"]
 shape = SubResource("BoxShape3D_nbwuq")

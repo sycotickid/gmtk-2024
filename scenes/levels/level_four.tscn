@@ -57,7 +57,7 @@ mesh = SubResource("BoxMesh_yevqo")
 shape = SubResource("BoxShape3D_2kh0o")
 
 [node name="VoidWall" type="StaticBody3D" parent="Arena" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.005, 8.85971, 9.79398)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.3872, 8.85971, 9.79398)
 collision_layer = 16
 collision_mask = 15
 
@@ -65,7 +65,7 @@ collision_mask = 15
 shape = SubResource("BoxShape3D_ws8x8")
 
 [node name="VoidWall2" type="StaticBody3D" parent="Arena" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.2733, 8.85971, 9.79398)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5682, 8.85971, 9.79398)
 collision_layer = 16
 collision_mask = 15
 
@@ -73,7 +73,7 @@ collision_mask = 15
 shape = SubResource("BoxShape3D_ws8x8")
 
 [node name="VoidWall3" type="StaticBody3D" parent="Arena" index="3"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.670641, 8.8597, -19.9205)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.670641, 8.8597, -17.6033)
 collision_layer = 16
 collision_mask = 15
 
@@ -81,7 +81,7 @@ collision_mask = 15
 shape = SubResource("BoxShape3D_ws8x8")
 
 [node name="VoidWall4" type="StaticBody3D" parent="Arena" index="4"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.670641, 8.8597, 39.9445)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.670641, 8.8597, 34.9383)
 collision_layer = 16
 collision_mask = 15
 
@@ -89,7 +89,7 @@ collision_mask = 15
 shape = SubResource("BoxShape3D_ws8x8")
 
 [node name="VoidWall5" type="StaticBody3D" parent="Arena" index="5"]
-transform = Transform3D(-4.37114e-08, 0, 1, -1, -4.37114e-08, -4.37114e-08, 4.37114e-08, -1, 1.91069e-15, -0.670641, 33.1883, 10.1589)
+transform = Transform3D(-4.37114e-08, 0, 1, -1, -4.37114e-08, -4.37114e-08, 4.37114e-08, -1, 1.91069e-15, -0.670641, 31.1259, 10.1589)
 collision_layer = 16
 collision_mask = 15
 
@@ -97,7 +97,7 @@ collision_mask = 15
 shape = SubResource("BoxShape3D_6bdyo")
 
 [node name="VoidWall6" type="StaticBody3D" parent="Arena" index="6"]
-transform = Transform3D(-4.37114e-08, 0, 1, -1, -4.37114e-08, -4.37114e-08, 4.37114e-08, -1, 1.91069e-15, -0.670641, -16.0536, 10.1589)
+transform = Transform3D(-4.37114e-08, 0, 1, -1, -4.37114e-08, -4.37114e-08, 4.37114e-08, -1, 1.91069e-15, -0.670641, -12.5326, 10.1589)
 collision_layer = 16
 collision_mask = 15
 

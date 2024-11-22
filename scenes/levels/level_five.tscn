@@ -164,7 +164,7 @@ surface_material_override/0 = ExtResource("3_khttg")
 shape = SubResource("BoxShape3D_t4sym")
 
 [node name="VoidWall" type="StaticBody3D" parent="Arena" index="8"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.005, 16.506, 1.79146)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.2391, 16.506, 1.79146)
 collision_layer = 16
 collision_mask = 15
 
@@ -172,7 +172,7 @@ collision_mask = 15
 shape = SubResource("BoxShape3D_egl4t")
 
 [node name="VoidWall2" type="StaticBody3D" parent="Arena" index="9"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.2733, 16.506, 1.79146)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.3462, 16.506, 1.79146)
 collision_layer = 16
 collision_mask = 15
 
@@ -180,7 +180,7 @@ collision_mask = 15
 shape = SubResource("BoxShape3D_egl4t")
 
 [node name="VoidWall3" type="StaticBody3D" parent="Arena" index="10"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.670641, 16.506, -27.923)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.670641, 16.506, -24.6952)
 collision_layer = 16
 collision_mask = 15
 
@@ -188,7 +188,7 @@ collision_mask = 15
 shape = SubResource("BoxShape3D_egl4t")
 
 [node name="VoidWall4" type="StaticBody3D" parent="Arena" index="11"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.670641, 16.506, 31.942)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.670641, 16.506, 25.6462)
 collision_layer = 16
 collision_mask = 15
 
@@ -196,7 +196,7 @@ collision_mask = 15
 shape = SubResource("BoxShape3D_egl4t")
 
 [node name="VoidWall5" type="StaticBody3D" parent="Arena" index="12"]
-transform = Transform3D(-4.37114e-08, 0, 1, -1, -4.37114e-08, -4.37114e-08, 4.37114e-08, -1, 1.91069e-15, -0.670641, 40.8346, 2.15634)
+transform = Transform3D(-4.37114e-08, 0, 1, -1, -4.37114e-08, -4.37114e-08, 4.37114e-08, -1, 1.91069e-15, -0.670641, 38.5359, 2.15634)
 collision_layer = 16
 collision_mask = 15
 
@@ -204,7 +204,7 @@ collision_mask = 15
 shape = SubResource("BoxShape3D_r3lf5")
 
 [node name="VoidWall6" type="StaticBody3D" parent="Arena" index="13"]
-transform = Transform3D(-4.37114e-08, 0, 1, -1, -4.37114e-08, -4.37114e-08, 4.37114e-08, -1, 1.91069e-15, -0.670641, -8.40731, 2.15634)
+transform = Transform3D(-4.37114e-08, 0, 1, -1, -4.37114e-08, -4.37114e-08, 4.37114e-08, -1, 1.91069e-15, -0.670641, -4.82024, 2.15634)
 collision_layer = 16
 collision_mask = 15
 
