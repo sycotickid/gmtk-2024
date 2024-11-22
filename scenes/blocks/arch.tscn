@@ -4,20 +4,16 @@
 [ext_resource type="Material" uid="uid://b4h0tcgeiph2b" path="res://assets/materials/wood.tres" id="2_b6seq"]
 [ext_resource type="ArrayMesh" uid="uid://dh18syuh7mqcx" path="res://assets/models/arch.obj" id="3_1bdyl"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_shink"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_6lv0j"]
+size = Vector3(1, 2, 4)
 
 [node name="Block" instance=ExtResource("1_rywlv")]
 
-[node name="MeshInstance3D" parent="." index="0"]
+[node name="MeshInstance3D" parent="." index="1"]
 transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, 0.5, 0, -0.5, -2.18557e-08, 0, 0, 0)
 mesh = ExtResource("3_1bdyl")
 surface_material_override/0 = ExtResource("2_b6seq")
 
-[node name="CollisionShape3D" parent="." index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_shink")
-
-[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="." index="2"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-visible = false
-polygon = PackedVector2Array(2, 1, -2, 1, -2, -1, -1, -1, -1, -0.5, -0.5, -0.05, 0, 0, 0.5, -0.05, 1, -0.5, 1, -1, 2, -1)
+[node name="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0319824, 0.00942993)
+shape = SubResource("BoxShape3D_6lv0j")

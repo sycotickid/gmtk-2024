@@ -25,7 +25,7 @@ const camera_offset_radius := 10.0
 
 func _ready():
 	camera = get_viewport().get_camera_3d()
-	playerCamera = player.get_child(0).get_child(0)
+	playerCamera = player.get_child(0).get_child(0).get_child(0)
 	Global.current_gamemode = Global.GameMode.SCALE
 	player.set_process(true)
 	playerCamera.current = true
@@ -44,5 +44,5 @@ func spawn_block(index: String):
 	new_block.global_transform = new_block.transform.looking_at(camera.global_position, Vector3.UP).rotated_local(Vector3.UP, Global.Deg90)
 	new_block.rotation.y = snapped(new_block.rotation.y, Global.Deg45)
 	new_block.rotation.z = 0.0
-	new_block.global_transform.origin = player.global_transform.origin + Vector3.UP * 2.5
+	new_block.global_transform.origin = player.global_transform.origin + Vector3.UP * 2.5 + Vector3.MODEL_FRONT * 2.5
 	add_child(new_block)

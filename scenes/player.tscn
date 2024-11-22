@@ -1,8 +1,10 @@
-[gd_scene load_steps=60 format=3 uid="uid://baw4jow0n18ld"]
+[gd_scene load_steps=62 format=3 uid="uid://baw4jow0n18ld"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_qej34"]
 [ext_resource type="PackedScene" uid="uid://cjpbxl5n2h54n" path="res://assets/models/kenny/character-female-b.glb" id="2_42lwt"]
 [ext_resource type="Texture2D" uid="uid://daiese5r3xt3j" path="res://assets/textures/kenny/crosshair179.png" id="2_otytr"]
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_62tvs"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1iix8"]
 size = Vector2(0.25, 0.25)
@@ -87,21 +89,25 @@ priority = 2
 advance_mode = 2
 advance_condition = &"is_jumping"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jg3vn"]
+advance_mode = 2
+advance_condition = &"is_climbing"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_bf76g"]
 states/IdleWalkRun/node = SubResource("AnimationNodeBlendSpace1D_ps50l")
 states/IdleWalkRun/position = Vector2(354, 100)
 states/crouch/node = SubResource("AnimationNodeAnimation_rghe5")
 states/crouch/position = Vector2(452, 209)
 states/fall/node = SubResource("AnimationNodeAnimation_sjcf2")
-states/fall/position = Vector2(537, 100)
+states/fall/position = Vector2(550, 100)
 states/holding-both/node = SubResource("AnimationNodeAnimation_8gwoh")
 states/holding-both/position = Vector2(438, -20)
 states/jump/node = SubResource("AnimationNodeAnimation_b5n36")
 states/jump/position = Vector2(282, 209)
 states/pick-up/node = SubResource("AnimationNodeAnimation_1jt2i")
 states/pick-up/position = Vector2(288, -20)
-transitions = ["Start", "IdleWalkRun", SubResource("AnimationNodeStateMachineTransition_h63t7"), "IdleWalkRun", "jump", SubResource("AnimationNodeStateMachineTransition_5yyi7"), "jump", "crouch", SubResource("AnimationNodeStateMachineTransition_yjutl"), "crouch", "IdleWalkRun", SubResource("AnimationNodeStateMachineTransition_21txr"), "IdleWalkRun", "pick-up", SubResource("AnimationNodeStateMachineTransition_xkenu"), "pick-up", "holding-both", SubResource("AnimationNodeStateMachineTransition_0acwv"), "holding-both", "IdleWalkRun", SubResource("AnimationNodeStateMachineTransition_4cqt1"), "IdleWalkRun", "fall", SubResource("AnimationNodeStateMachineTransition_ho8sc"), "fall", "jump", SubResource("AnimationNodeStateMachineTransition_s0pd0")]
-graph_offset = Vector2(-126, -73)
+transitions = ["Start", "IdleWalkRun", SubResource("AnimationNodeStateMachineTransition_h63t7"), "IdleWalkRun", "jump", SubResource("AnimationNodeStateMachineTransition_5yyi7"), "jump", "crouch", SubResource("AnimationNodeStateMachineTransition_yjutl"), "crouch", "IdleWalkRun", SubResource("AnimationNodeStateMachineTransition_21txr"), "IdleWalkRun", "pick-up", SubResource("AnimationNodeStateMachineTransition_xkenu"), "pick-up", "holding-both", SubResource("AnimationNodeStateMachineTransition_0acwv"), "holding-both", "IdleWalkRun", SubResource("AnimationNodeStateMachineTransition_4cqt1"), "IdleWalkRun", "fall", SubResource("AnimationNodeStateMachineTransition_ho8sc"), "fall", "jump", SubResource("AnimationNodeStateMachineTransition_s0pd0"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_jg3vn")]
+graph_offset = Vector2(-123, -63)
 
 [sub_resource type="Animation" id="Animation_t2vpi"]
 resource_name = "attack-kick-left"
@@ -2741,22 +2747,26 @@ margin = 2.5
 height = 1.5
 
 [node name="Player" type="CharacterBody3D"]
-collision_mask = 31
+collision_mask = 30
 platform_on_leave = 1
 script = ExtResource("1_qej34")
 
 [node name="Anchor" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85241, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69599, 0)
 
-[node name="Camera" type="Camera3D" parent="Anchor"]
-transform = Transform3D(-1, 2.26267e-08, -8.44439e-08, 0, 0.965926, 0.258819, 8.74228e-08, 0.258819, -0.965926, 0, 1.5, -3)
+[node name="SpringArm3D" type="SpringArm3D" parent="Anchor"]
+shape = SubResource("SeparationRayShape3D_62tvs")
+spring_length = -3.5
 
-[node name="BlockCheck" type="RayCast3D" parent="Anchor/Camera"]
+[node name="Camera" type="Camera3D" parent="Anchor/SpringArm3D"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, -3.5)
+
+[node name="BlockCheck" type="RayCast3D" parent="Anchor/SpringArm3D/Camera"]
 transform = Transform3D(1, 0, 0, 0, -5.96046e-08, -1, 0, 1, -5.96046e-08, 0, 0, 0)
 target_position = Vector3(0, -30, 0)
 collision_mask = 4
 
-[node name="Crosshair" type="MeshInstance3D" parent="Anchor/Camera/BlockCheck"]
+[node name="Crosshair" type="MeshInstance3D" parent="Anchor/SpringArm3D/Camera/BlockCheck"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.355, 0)
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_1iix8")
@@ -2782,10 +2792,10 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 bones/1/position = Vector3(0.083571, 0.17625, -0.02875)
 bones/2/position = Vector3(-0.083571, 0.17625, -0.02875)
 bones/3/position = Vector3(-1.44382e-15, 0.17625, -0.02875)
-bones/3/rotation = Quaternion(-0.0248768, 0, 0, 0.999691)
-bones/4/rotation = Quaternion(0, 0, -0.329222, 0.944252)
-bones/5/rotation = Quaternion(0, 0, 0.329222, 0.944252)
-bones/6/rotation = Quaternion(0, 0.0248768, 0, 0.999691)
+bones/3/rotation = Quaternion(0.0310869, 0, 0, 0.999517)
+bones/4/rotation = Quaternion(0, 0, -0.294969, 0.955507)
+bones/5/rotation = Quaternion(0, 0, 0.294969, 0.955507)
+bones/6/rotation = Quaternion(0, -0.0310869, 0, 0.999517)
 
 [node name="AnimationPlayer" parent="Mesh/character-female-b2" index="1"]
 libraries = {
@@ -2802,11 +2812,13 @@ parameters/conditions/is_jumping = false
 parameters/IdleWalkRun/blend_position = 0
 
 [node name="ClimbCheck" type="RayCast3D" parent="Mesh"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.591561, 0)
+target_position = Vector3(0, -0.55, 0)
 collision_mask = 4
 
 [node name="ClimbFinishCheck" type="RayCast3D" parent="Mesh"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.0411953, 0)
+target_position = Vector3(0, -0.55, 0)
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

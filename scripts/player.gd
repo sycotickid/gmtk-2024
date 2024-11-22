@@ -1,24 +1,24 @@
 extends CharacterBody3D
 
 @onready var anchor = $Anchor
-@onready var camera = $Anchor/Camera
-@onready var mesh = $Mesh
+@onready var spring_arm = $Anchor/SpringArm3D
+@onready var camera = $Anchor/SpringArm3D/Camera
+@onready var block_check = $Anchor/SpringArm3D/Camera/BlockCheck
+@onready var crosshair = $Anchor/SpringArm3D/Camera/BlockCheck/Crosshair
 
+@onready var mesh = $Mesh
 @onready var girl = $"Mesh/character-female-b2"
-@onready var boy = $"Mesh/character-male-d2"
 @onready var animation_tree = $Mesh/AnimationTree
 @onready var animation_state = $Mesh/AnimationTree.get("parameters/playback")
 
 @onready var climb_check = $Mesh/ClimbCheck
 @onready var climb_finished_check = $Mesh/ClimbFinishCheck
 
-@onready var block_check = $Anchor/Camera/BlockCheck
-
-@onready var crosshair = $Anchor/Camera/BlockCheck/Crosshair
-
-#ORBIT
-const ORBIT_SPEED := 0.5
-var _orbit_speed := Vector2()
+#CAMERA
+const ORBIT_SPEED := 0.002
+const PITCH_LIMIT := 60
+var _yaw := float()
+var _pitch := float()
 #MOVEMENT
 const SPEED = 5.0
 const ROTATION_SPEED = 20.0
@@ -76,7 +76,8 @@ func _physics_process(delta):
 	
 	var input_dir = Input.get_vector("move_left", "move_right", "move_backward", "move_forward")
 	if can_climb:
-		climbing()
+		if !Input.is_action_pressed("jump"):
+			climbing()
 	if is_climbing:
 		var wall_normal_rotation = -(atan2(climb_check.get_collision_normal().z, climb_check.get_collision_normal().x) - Global.Deg90)
 		if Global.current_gamemode == Global.GameMode.SCALE:
@@ -90,6 +91,8 @@ func _physics_process(delta):
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.y = move_toward(velocity.y, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
+		if Input.is_action_pressed("jump"):
+			stop_climbing()
 	else:
 		if not is_on_floor():
 			velocity += get_gravity() * 2 * delta
@@ -120,22 +123,21 @@ func _physics_process(delta):
 		global_position = Vector3(0,1.25,0)
 	
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		anchor.rotate_y(-_orbit_speed.x * delta)
-		camera.rotate_x(_orbit_speed.y * delta)
-		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-45), deg_to_rad(60))
-		_orbit_speed = Vector2()
+		anchor.rotation.y = lerpf(anchor.rotation.y, _yaw, delta*10)
+		anchor.rotation.x = lerpf(anchor.rotation.x, _pitch, delta*10)
+		_pitch = clamp(_pitch, deg_to_rad(-PITCH_LIMIT), deg_to_rad(PITCH_LIMIT))
 	
-	var new_camera_zoom = camera.position.move_toward(anchor.position, -_scroll_speed * delta)
-	new_camera_zoom.y += _scroll_speed * delta * 0.5
-	if new_camera_zoom.distance_to(anchor.position) < ZOOM_MAX && new_camera_zoom.distance_to(anchor.position) > ZOOM_MIN:
-		camera.position = new_camera_zoom
+	spring_arm.spring_length -= _scroll_speed * 0.5 * delta
+	spring_arm.spring_length = clamp(spring_arm.spring_length, -6, -1)
 	_scroll_speed = 0.0
 
 func _input(event):
 	if Global.current_gamemode != Global.GameMode.SCALE:
 		return
 	if event is InputEventMouseMotion:
-		_orbit_speed = event.relative * ORBIT_SPEED
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			_yaw += -event.relative.x * ORBIT_SPEED
+			_pitch += event.relative.y * ORBIT_SPEED
 		
 	var scroll_input = Input.get_axis("zoom_in_camera", "zoom_out_camera")
 	if scroll_input != 0:
@@ -151,21 +153,29 @@ func climbing():
 	if climb_check.is_colliding():
 		if climb_finished_check.is_colliding():
 			await get_tree().create_timer(0.3).timeout
-			animation_tree.set("parameters/conditions/is_climbing", true)
-			is_climbing = true
+			start_climbing()
 		else:
-			velocity.y = JUMP_VELOCITY * 2
-			animation_tree.set("parameters/conditions/is_jumping", true)
-			await get_tree().create_timer(5).timeout
-			is_climbing = false
+			stop_climbing()
 	else:
-		animation_tree.set("parameters/conditions/is_climbing", false)
+		stop_climbing()
+
+func start_climbing():
+	is_climbing = true
+	animation_tree.set("parameters/conditions/is_climbing", true)
+	if animation_tree.get("parameters/conditions/is_jumping"):
+		animation_tree.set("parameters/conditions/is_jumping", false)
+
+func stop_climbing():
+	if is_climbing:
 		is_climbing = false
+		animation_tree.set("parameters/conditions/is_climbing", false)
+		animation_tree["parameters/playback"].travel("IdleWalkRun")
 
 func _check_for_block():
 	var block = block_check.get_collider()
 	if is_instance_valid(block):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		block.call("pick_up_block")
-		animation_tree.set("parameters/conditions/dropped_block", false)
-		animation_tree.set("parameters/conditions/is_holding_block", true)
+		if !Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			block.call("pick_up_block")
+			animation_tree.set("parameters/conditions/dropped_block", false)
+			animation_tree.set("parameters/conditions/is_holding_block", true)

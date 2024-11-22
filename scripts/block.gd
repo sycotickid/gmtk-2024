@@ -58,7 +58,7 @@ func _input(event):
 			is_dragged = false
 			Global.is_carrying_block = false
 		
-		var offset_input = Input.get_axis("zoom_in_camera", "zoom_out_camera") * OFFSET_SPEED
+		var offset_input = Input.get_axis("move_up", "move_down") * OFFSET_SPEED
 		if offset_input != 0:
 			offset_amount = offset_input
 		
@@ -81,7 +81,6 @@ func _input(event):
 func _on_input_event(camera, event, position, normal, shape_idx):
 	if Input.is_action_just_pressed("select") && !Global.is_carrying_block:
 		pick_up_block()
-
 
 func pick_up_block():
 	playback.play_stream(Global.wood_hover_sounds.pick_random())
