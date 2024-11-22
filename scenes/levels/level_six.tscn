@@ -127,12 +127,11 @@ surface_material_override/0 = ExtResource("3_ub12a")
 shape = SubResource("BoxShape3D_bcuty")
 
 [node name="Floor4" type="StaticBody3D" parent="Arena" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016794, 24.3471, 5.73399)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.017, 24.1, 5.734)
 collision_layer = 2
 collision_mask = 15
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Arena/Floor4" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.257679, 0)
 material_override = ExtResource("2_4la0l")
 mesh = SubResource("BoxMesh_ihioq")
 
@@ -240,7 +239,7 @@ collision_mask = 15
 shape = SubResource("BoxShape3D_8y1fu")
 
 [node name="VoidWall6" type="StaticBody3D" parent="Arena" index="15"]
-transform = Transform3D(-4.37114e-08, 0, 1, -1, -4.37114e-08, -4.37114e-08, 4.37114e-08, -1, 0, -0.697478, -5.65659, -9.34871)
+transform = Transform3D(-4.37114e-08, 0, 1, -1, -4.37114e-08, -4.37114e-08, 4.37114e-08, -1, 0, -0.697478, -1.5179, -9.34871)
 collision_layer = 16
 collision_mask = 15
 
