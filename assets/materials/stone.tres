@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://d0rww0w82nl41" path="res://assets/textures/stone.png" id="1_asgwh"]
 
 [resource]
+shading_mode = 0
 albedo_texture = ExtResource("1_asgwh")
 uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
